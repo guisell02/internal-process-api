@@ -3,4 +3,4 @@ import os
 
 load_dotenv()
 
-PROJECT_NAME = os.getenv("PROJECT_NAME", "Internal Process API")
+PROJECT_NAMES = os.getenv("PROJECT_NAME", "Internal Process API")
