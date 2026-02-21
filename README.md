@@ -12,10 +12,10 @@ Backend API built with FastAPI for managing internal processes and task workflow
 
 ## Project Structure
 
-app/
+```app/
  ├── core/        # Configuration and core logic
  ├── routers/     # API route definitions
- └── main.py      # FastAPI application entry point
+ └── main.py      # FastAPI application entry point ```
 
 ## Environment Setup
 
