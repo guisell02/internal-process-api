@@ -13,9 +13,17 @@ from app.database.session import SessionLocal
 from app.models.user import User
 from datetime import datetime, UTC
 
+from app.database.session import SessionLocal
+from app.models.user import User
+from datetime import datetime, UTC
+import logging
+
+# configure logger
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 db = SessionLocal()
 
-# create user
 new_user = User(
     first_name="Guisella",
     last_name="Urbina",
@@ -29,12 +37,15 @@ new_user = User(
 
 try:
     db.add(new_user)
-    print(new_user.email)
+    logger.info(f"Creating user with email: {new_user.email}")
+
     db.commit()
+    logger.info("User successfully created")
 
 except Exception as e:
     db.rollback()
-    print(f"el error es: {e}")
+    logger.error(f"Database error occurred: {e}")
 
 finally:
     db.close()
+    logger.info("Database session closed")
