@@ -40,3 +40,12 @@ GET /health
 Interactive Swagger UI available at:
 
 /docs
+
+
+## System Design
+
+Detailed documentation available in:
+
+- docs/database-design.md
+- docs/business-rules.md
+- docs/permissions.md
