@@ -1,32 +1,52 @@
-from app.database.base import Base
-from datetime import datetime
+from datetime import datetime, UTC
 from sqlalchemy import Integer, String, Boolean, DateTime
 from sqlalchemy.orm import Mapped, mapped_column
 
-""" GUIA DE NUESTRO UML
-
-Table users {
-  id int [pk]
-  first_name varchar
-  last_name varchar
-  email varchar [unique]
-  password_hash varchar
-  role_id int
-  is_active boolean
-  created_at timestamp
-  updated_at timestamp
-} """
+from app.database.base import Base
 
 
 class User(Base):
+    """
+    User ORM model.
+
+    Represents the 'users' table in the database.
+
+    Fields:
+        id: Primary key.
+        first_name: User's first name.
+        last_name: User's last name.
+        email: Unique email address.
+        password_hash: Hashed password.
+        role_id: Role identifier (FK in future).
+        is_active: Indicates if the user is active.
+        created_at: Timestamp when the user was created.
+        updated_at: Timestamp when the user was last updated.
+    """
+
     __tablename__ = "users"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
+
     first_name: Mapped[str] = mapped_column(String(30), nullable=False)
-    last_name: Mapped[str] = mapped_column(String(30))
+    last_name: Mapped[str] = mapped_column(String(30), nullable=True)
+
     email: Mapped[str] = mapped_column(String(120), unique=True, nullable=False)
-    password_hash: Mapped[str] = mapped_column(String(30), nullable=False)
+
+    password_hash: Mapped[str] = mapped_column(String(128), nullable=False)
+
     role_id: Mapped[int] = mapped_column(Integer, nullable=False)
+
     is_active: Mapped[bool] = mapped_column(Boolean, default=True)
-    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
-    updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True),
+        default=lambda: datetime.now(UTC),
+        nullable=False,
+    )
+
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True),
+        default=lambda: datetime.now(UTC),
+        onupdate=lambda: datetime.now(UTC),
+        nullable=False,
+    )

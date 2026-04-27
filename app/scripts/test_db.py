@@ -12,10 +12,6 @@ Not part of production code.
 from app.database.session import SessionLocal
 from app.models.user import User
 from datetime import datetime, UTC
-
-from app.database.session import SessionLocal
-from app.models.user import User
-from datetime import datetime, UTC
 import logging
 
 # configure logger
