@@ -4,7 +4,7 @@ from app.core.config import PROJECT_NAME
 from app.database.base import Base
 from app.database.engine import engine
 
-# IMPORTANTE
+# IMPORTANT
 
 app = FastAPI(title=PROJECT_NAME)
 
