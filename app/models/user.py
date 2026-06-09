@@ -34,7 +34,7 @@ class User(Base):
 
     password_hash: Mapped[str] = mapped_column(String(128), nullable=False)
 
-    role_id: Mapped[int] = mapped_column(Integer, nullable=False)
+    role_id: Mapped[int] = mapped_column(Integer, nullable=True)
 
     is_active: Mapped[bool] = mapped_column(Boolean, default=True)
 
