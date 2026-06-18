@@ -9,10 +9,11 @@ This script is used to:
 Not part of production code.
 """
 
+import logging
+from datetime import UTC, datetime
+
 from app.database.session import SessionLocal
 from app.models.user import User
-from datetime import datetime, UTC
-import logging
 
 # configure logger
 logging.basicConfig(level=logging.INFO)

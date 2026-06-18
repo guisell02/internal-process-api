@@ -50,8 +50,9 @@ class UserResponseSchema(BaseModel):
 
     id: int
     first_name: str
-    last_name: str
+    last_name: str | None
     email: EmailStr
+    role_id: int | None
     is_active: bool
     created_at: datetime
     updated_at: datetime

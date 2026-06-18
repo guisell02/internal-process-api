@@ -14,10 +14,10 @@ Not part of production code.
 import logging
 
 from app.database.session import SessionLocal
+from app.exceptions.user_exceptions import UserAlreadyExistsError
 from app.repositories.user_repository import UserRepository
 from app.schemas.user_schemas import CreateUserSchema
 from app.services.user_service import UserService
-from app.exceptions.user_exceptions import UserAlreadyExistsError
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -36,10 +36,7 @@ def main() -> None:
 
     db = SessionLocal()
     user_repository = UserRepository(db)
-    user_service = UserService(
-        db=db,
-        user_repository=user_repository,
-    )
+    user_service = UserService(db=db, user_repository=user_repository)
 
     try:
 

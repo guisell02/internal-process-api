@@ -1,12 +1,13 @@
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
-from app.schemas.user_schemas import CreateUserSchema
+
 from app.core.security.password import hash_password
-from app.models.user import User
-from app.repositories.user_repository import UserRepository
 from app.exceptions.user_exceptions import (
     UserAlreadyExistsError,
 )
+from app.models.user import User
+from app.repositories.user_repository import UserRepository
+from app.schemas.user_schemas import CreateUserSchema
 
 
 class UserService:
